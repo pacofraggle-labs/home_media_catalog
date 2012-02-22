@@ -77,27 +77,31 @@ public class MediaFile {
                 '}';
     }
 
-    @Override                                                        //@Override
-    public boolean equals(Object o) {                                //public boolean equals(Object o) {
-        if (o == null) {                                             //    if (this == o) return true;
-            return false;                                            //    if (o == null || getClass() != o.getClass()) return false;
-        }                                                            //
-        if (!(o instanceof MediaFile)){                              //    MediaFile mediaFile = (MediaFile) o;
-            return false;                                            //
-        }                                                            //    if (crc != null ? !crc.equals(mediaFile.crc) : mediaFile.crc != null) return false;
-                                                                     //
-        MediaFile m = (MediaFile) o;                                 //    return true;
-                                                                     //
-        if (StringUtils.equals(this.getCrc(), m.getCrc())){          //}
-            return true;
+    @Override
+    public boolean equals(Object o) {
+        if (o == null) {
+            return false;
+        }
+        if (!(o instanceof MediaFile)) {
+            return false;
         }
 
-        if (    this.getCrc() == null && m.getCrc() == null &&
-                StringUtils.equals(this.getFilename(), m.getFilename()) &&
-                StringUtils.equals(this.getPath(), m.getPath()) &&
-                StringUtils.equals(this.getTitle(), m.getTitle()) &&
-                StringUtils.equals(Long.toBinaryString(this.getFilesize()), Long.toBinaryString(m.getFilesize()))){
-            return true;
+        MediaFile m = (MediaFile) o;
+
+        if (StringUtils.equals(this.getCrc(), m.getCrc())) {
+            if (this.getCrc() == null) {
+                if ( (StringUtils.equals(this.getFilename(), m.getFilename())) &&
+                     (StringUtils.equals(this.getPath(), m.getPath())) &&
+                     (StringUtils.equals(this.getTitle(), m.getTitle())) &&
+                     (this.getFilesize() == m.getFilesize()) ) {
+
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                return true;
+            }
         }
 
         return false;
