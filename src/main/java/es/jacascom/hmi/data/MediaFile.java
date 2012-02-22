@@ -1,4 +1,4 @@
-package es.javi.prova1.datos;
+package es.jacascom.hmi.data;
 
 /**
  * Created by IntelliJ IDEA.
