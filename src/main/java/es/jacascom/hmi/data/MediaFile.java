@@ -88,7 +88,7 @@ public class MediaFile {
                                                         //
         MediaFile m = (MediaFile) o;                    //    return true;
                                                         //
-        if (StringUtils.equals(this.getCrc(), ((MediaFile) o).getCrc())){          //}
+        if (StringUtils.equals(this.getCrc(), m.getCrc())){          //}
             return true;
         }
 
