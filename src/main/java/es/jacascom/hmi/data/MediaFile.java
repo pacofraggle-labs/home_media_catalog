@@ -1,5 +1,8 @@
 package es.jacascom.hmi.data;
 
+import org.apache.commons.lang.StringUtils;
+
+
 /**
  * Created by IntelliJ IDEA.
  * User: elkstro
@@ -75,7 +78,7 @@ public class MediaFile {
     }
 
     @Override                                           //@Override
-    public boolean equals(Object o) {                   //public boolean equals(Object o) {
+    public boolean equals(Object o) {                         //public boolean equals(Object o) {
         if (o == null) {                                //    if (this == o) return true;
             return false;                               //    if (o == null || getClass() != o.getClass()) return false;
         }                                               //
@@ -85,7 +88,7 @@ public class MediaFile {
                                                         //
         MediaFile m = (MediaFile) o;                    //    return true;
                                                         //
-        if (m.getCrc().equals(this.getCrc())){          //}
+        if (StringUtils.equals(this.getCrc(), ((MediaFile) o).getCrc())){          //}
             return true;
         }
 
