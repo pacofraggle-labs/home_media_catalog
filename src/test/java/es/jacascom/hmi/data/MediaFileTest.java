@@ -29,7 +29,7 @@ public class MediaFileTest {
 
     @Test
     public void testEqualsDifferentCRC() throws Exception {
-        MediaFile other = new MediaFile("2222", "FileName", "Path", "Title", 1024);;
+        MediaFile other = new MediaFile("2222", "FileName", "Path", "Title", 1024);
 
         assertFalse("Different CRC but equals fails", mediaFile.equals(other));
     }
@@ -42,13 +42,13 @@ public class MediaFileTest {
     @Test
     public void testEqualsWithNullInternalCRC() throws Exception {
         mediaFile.setCrc(null);
-        MediaFile other = new MediaFile("1111", "FileName", "Path", "Title", 1024);;
+        MediaFile other = new MediaFile("1111", "FileName", "Path", "Title", 1024);
         assertFalse("equals with null CRC fails", mediaFile.equals(null));
     }
 
-    @Test
+    /*@Test
     public void testEqualsWithNullCRC() throws Exception {
-        MediaFile other = new MediaFile(null, "FileName", "Path", "Title", 1024);;
+        MediaFile other = new MediaFile(null, "FileName", "Path", "Title", 1024);
         assertFalse("equals with null CRC fails", mediaFile.equals(other));
     }
 
@@ -58,5 +58,19 @@ public class MediaFileTest {
         mediaFile.setCrc(null);
 
         assertFalse("equals with null CRCs fails", mediaFile.equals(other));
+    }*/
+
+    @Test
+    public void testEqualsWithNullCRC() throws Exception {
+        MediaFile other = new MediaFile(null, "FileName", "Path", "Title", 1024);
+        assertFalse("equals with null CRC fails", mediaFile.equals(null));
+    }
+
+    @Test
+    public void testEqualsWithBothCRCNull() throws Exception {
+        MediaFile other = new MediaFile(null, "FileName", "Path", "Title", 0);
+        mediaFile.setCrc(null);
+
+        assertFalse("equals with null CRCs fails", mediaFile.equals(null));
     }
 }
