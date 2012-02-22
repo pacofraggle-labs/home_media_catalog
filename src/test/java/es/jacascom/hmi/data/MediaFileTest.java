@@ -49,7 +49,7 @@ public class MediaFileTest {
     @Test
     public void testEqualsWithNullCRC() throws Exception {
         MediaFile other = new MediaFile(null, "FileName", "Path", "Title", 1024);
-        assertFalse("equals with null CRC fails", mediaFile.equals(null));
+        assertFalse("equals with null CRC fails", mediaFile.equals(other));
     }
 
     @Test
@@ -57,6 +57,6 @@ public class MediaFileTest {
         MediaFile other = new MediaFile(null, "FileName", "Path", "Title", 0);
         mediaFile.setCrc(null);
 
-        assertFalse("equals with null CRCs fails", mediaFile.equals(null));
+        assertFalse("equals with null CRCs fails", mediaFile.equals(other));
     }
 }
