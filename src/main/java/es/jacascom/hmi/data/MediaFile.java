@@ -77,18 +77,26 @@ public class MediaFile {
                 '}';
     }
 
-    @Override                                           //@Override
-    public boolean equals(Object o) {                         //public boolean equals(Object o) {
-        if (o == null) {                                //    if (this == o) return true;
-            return false;                               //    if (o == null || getClass() != o.getClass()) return false;
-        }                                               //
-        if (!(o instanceof MediaFile)){                 //    MediaFile mediaFile = (MediaFile) o;
-            return false;                               //
-        }                                               //    if (crc != null ? !crc.equals(mediaFile.crc) : mediaFile.crc != null) return false;
-                                                        //
-        MediaFile m = (MediaFile) o;                    //    return true;
-                                                        //
+    @Override                                                        //@Override
+    public boolean equals(Object o) {                                //public boolean equals(Object o) {
+        if (o == null) {                                             //    if (this == o) return true;
+            return false;                                            //    if (o == null || getClass() != o.getClass()) return false;
+        }                                                            //
+        if (!(o instanceof MediaFile)){                              //    MediaFile mediaFile = (MediaFile) o;
+            return false;                                            //
+        }                                                            //    if (crc != null ? !crc.equals(mediaFile.crc) : mediaFile.crc != null) return false;
+                                                                     //
+        MediaFile m = (MediaFile) o;                                 //    return true;
+                                                                     //
         if (StringUtils.equals(this.getCrc(), m.getCrc())){          //}
+            return true;
+        }
+
+        if (    this.getCrc() == null && m.getCrc() == null &&
+                StringUtils.equals(this.getFilename(), m.getFilename()) &&
+                StringUtils.equals(this.getPath(), m.getPath()) &&
+                StringUtils.equals(this.getTitle(), m.getTitle()) &&
+                StringUtils.equals(Long.toBinaryString(this.getFilesize()), Long.toBinaryString(m.getFilesize()))){
             return true;
         }
 
