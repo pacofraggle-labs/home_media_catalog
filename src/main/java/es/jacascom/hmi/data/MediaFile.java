@@ -12,26 +12,26 @@ import org.apache.commons.lang.StringUtils;
  */
 public class MediaFile {
 
-    private String crc;
+    private String code;
     private String filename;
     private String path;
     private String title;
     private long filesize;
 
-    public MediaFile(String crc, String filename, String path, String title, long filesize) {
+    public MediaFile(String code, String filename, String path, String title, long filesize) {
         this.filesize = filesize;
-        this.crc = crc;
+        this.code = code;
         this.filename = filename;
         this.path = path;
         this.title = title;
     }
 
-    public String getCrc() {
-        return crc;
+    public String getCode() {
+        return code;
     }
 
-    public void setCrc(String crc) {
-        this.crc = crc;
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getFilename() {
@@ -69,7 +69,7 @@ public class MediaFile {
     @Override
     public String toString() {
         return "MediaFile{" +
-                "crc='" + crc + '\'' +
+                "code='" + code + '\'' +
                 ", filename='" + filename + '\'' +
                 ", path='" + path + '\'' +
                 ", title='" + title + '\'' +
@@ -88,8 +88,8 @@ public class MediaFile {
 
         MediaFile m = (MediaFile) o;
 
-        if (StringUtils.equals(this.getCrc(), m.getCrc())) {
-            if (this.getCrc() == null) {
+        if (StringUtils.equals(this.getCode(), m.getCode())) {
+            if (this.getCode() == null) {
                 if ( (StringUtils.equals(this.getFilename(), m.getFilename())) &&
                      (StringUtils.equals(this.getPath(), m.getPath())) &&
                      (StringUtils.equals(this.getTitle(), m.getTitle())) &&
@@ -112,6 +112,6 @@ public class MediaFile {
 
     @Override
     public int hashCode() {
-        return crc != null ? crc.hashCode() : 0;
+        return code != null ? code.hashCode() : 0;
     }
 }

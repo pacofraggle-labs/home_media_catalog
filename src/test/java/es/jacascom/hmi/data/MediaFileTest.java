@@ -16,47 +16,47 @@ public class MediaFileTest {
     private MediaFile mediaFile;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp()  {
         mediaFile = new MediaFile("1111", "FileName", "Path", "Title", 1024);
     }
 
     @Test
-    public void testEqualsSameCRC() throws Exception {
+    public void testEqualsSameCode()  {
         MediaFile other = new MediaFile("1111", "other", "other", "other", 0);
 
-        assertEquals("Same CRC but equals fails", mediaFile, other);
+        assertEquals("Same Code but equals fails", mediaFile, other);
     }
 
     @Test
-    public void testEqualsDifferentCRC() throws Exception {
+    public void testEqualsDifferentCode()  {
         MediaFile other = new MediaFile("2222", "FileName", "Path", "Title", 1024);
 
-        assertFalse("Different CRC but equals fails", mediaFile.equals(other));
+        assertFalse("Different Code but equals fails", mediaFile.equals(other));
     }
 
     @Test
-    public void testEqualsWithNull() throws Exception {
+    public void testEqualsWithNull()  {
         assertFalse("equals with null fails", mediaFile.equals(null));
     }
 
     @Test
-    public void testEqualsWithNullInternalCRC() throws Exception {
-        mediaFile.setCrc(null);
+    public void testEqualsWithNullInternalCode()  {
+        mediaFile.setCode(null);
         MediaFile other = new MediaFile("1111", "FileName", "Path", "Title", 1024);
-        assertFalse("equals with null CRC fails", mediaFile.equals(null));
+        assertFalse("equals with null Code fails", mediaFile.equals(null));
     }
 
     @Test
-    public void testEqualsWithNullCRC() throws Exception {
+    public void testEqualsWithNullCode()  {
         MediaFile other = new MediaFile(null, "FileName", "Path", "Title", 1024);
-        assertFalse("equals with null CRC fails", mediaFile.equals(other));
+        assertFalse("equals with null Code fails", mediaFile.equals(other));
     }
 
     @Test
-    public void testEqualsWithBothCRCNull() throws Exception {
+    public void testEqualsWithBothCodeNull()  {
         MediaFile other = new MediaFile(null, "FileName", "Path", "Title", 0);
-        mediaFile.setCrc(null);
+        mediaFile.setCode(null);
 
-        assertFalse("equals with null CRCs fails", mediaFile.equals(other));
+        assertFalse("equals with null Codes fails", mediaFile.equals(other));
     }
 }
