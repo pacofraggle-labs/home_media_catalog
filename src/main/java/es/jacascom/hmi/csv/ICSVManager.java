@@ -19,5 +19,5 @@ public interface ICSVManager {
      * @param path Root folder
      * @param extensions Extensions to be filtered
      */
-    boolean saveCSV(String path, String[] extensions) throws IOException;
+    boolean saveCSV(List<MediaFile> media, String filename) throws IOException;
 }

@@ -18,12 +18,24 @@ public class MediaFile {
     private String title;
     private long filesize;
 
+    public MediaFile() {
+
+    }
+
     public MediaFile(String code, String filename, String path, String title, long filesize) {
         this.filesize = filesize;
         this.code = code;
         this.filename = filename;
         this.path = path;
         this.title = title;
+    }
+
+    public MediaFile(String[] row) {
+        setCode(row[0]);
+        setFilename(row[1]);
+        setPath(row[2]);
+        setTitle(row[3]);
+        setFilesize(Long.parseLong(row[4]));
     }
 
     public String getCode() {
@@ -66,6 +78,9 @@ public class MediaFile {
         this.filesize = filesize;
     }
 
+    public String[] toStringArray() {
+        return new String[]{code, filename, path, title, Long.toString(filesize)};
+    }
     @Override
     public String toString() {
         return "MediaFile{" +

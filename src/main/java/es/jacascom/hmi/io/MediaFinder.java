@@ -35,7 +35,7 @@ public class MediaFinder implements IMediaFinder {
             for (int i=0; i< mFiles.length; i++){
                 // If mFiles is a Directory, then it goes in and checks mFiles
                 if (mFiles[i].isDirectory()) {
-                    List<MediaFile> dirFiles = findMedia(mFiles[i].getAbsolutePath());
+                    List<MediaFile> dirFiles = findMedia(mFiles[i].getAbsolutePath(), extensions);
                     if (dirFiles != null) {
                         list.addAll(dirFiles);
                     }

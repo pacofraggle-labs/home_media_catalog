@@ -8,11 +8,11 @@ public final class CSVHelper {
     }
 
     public static MediaFile convertToMediaFile(String[] row) {
-        return null;
+        return new MediaFile(row);
     }
 
     public static String[] convertFromMediaFile(MediaFile media) {
-        return null;
+        return media.toStringArray();
     }
 
     public static String[] extractRowHeaders(Class beanClass) {

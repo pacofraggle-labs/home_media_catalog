@@ -47,12 +47,13 @@ public class FileHelper {
             long max = getMaxSize();
             int len;
             byte[] bytes = new byte[FileHelper.CHUNK_SIZE];
-
             do {
-                len = fis.read(bytes, pos, FileHelper.CHUNK_SIZE);
-                algorithm.update(bytes, 0, FileHelper.CHUNK_SIZE);
+                len = fis.read(bytes, 0, FileHelper.CHUNK_SIZE);
+                if (len > 0) {
+                    algorithm.update(bytes, 0, len);
+                }
                 pos += FileHelper.CHUNK_SIZE;
-            } while ((pos < max) && (len > 0));
+            } while ((pos < max) && (len == FileHelper.CHUNK_SIZE));
 
             result = Long.toString(algorithm.getValue());
         } catch (IOException e) {

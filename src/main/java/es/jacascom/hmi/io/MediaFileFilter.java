@@ -35,7 +35,7 @@ public class MediaFileFilter implements FileFilter {
     }
 
     public boolean accept(File pathname) {
-        if ((pathname.isDirectory()) || (extensions == null)) {
+        if ((extensions == null) || (pathname.isDirectory())) {
             return true;
         }
 
