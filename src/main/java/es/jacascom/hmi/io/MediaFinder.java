@@ -16,11 +16,11 @@ public class MediaFinder implements IMediaFinder {
     }
 
     public List<MediaFile> findMedia(String path) {
-        return findMedia(path, null);
+        return findMedia(path, path, null);
     }
 
 
-    public List<MediaFile> findMedia(String path, String[] extensions) {
+    public List<MediaFile> findMedia(String path, String base, String[] extensions) {
         // Build the filter
         FileFilter filter = new MediaFileFilter(extensions);
 
@@ -35,13 +35,13 @@ public class MediaFinder implements IMediaFinder {
             for (int i=0; i< mFiles.length; i++){
                 // If mFiles is a Directory, then it goes in and checks mFiles
                 if (mFiles[i].isDirectory()) {
-                    List<MediaFile> dirFiles = findMedia(mFiles[i].getAbsolutePath(), extensions);
+                    List<MediaFile> dirFiles = findMedia(mFiles[i].getAbsolutePath(), base, extensions);
                     if (dirFiles != null) {
                         list.addAll(dirFiles);
                     }
                 } else {
                     // Creates a MediaFile with mFiles[i]
-                    MediaFile f = helper.convertRealFileToMediaFile(mFiles[i], path);
+                    MediaFile f = helper.convertRealFileToMediaFile(mFiles[i], base);
                     if (f != null) {
                         list.add(f);
                     }

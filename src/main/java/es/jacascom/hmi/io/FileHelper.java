@@ -34,7 +34,13 @@ public class FileHelper {
         String crc = calculateCRC(file);
         String path = FileHelper.pathToRelative(basedir, file.getPath());
 
-        return new MediaFile(crc, file.getName(), path,file.getName(), file.length());
+        path = StringUtils.removeStart(path, "/");
+
+        String title = new String(file.getName());
+        title = StringUtils.replaceChars(title, "_", " ");
+        title = StringUtils.substringBeforeLast(title, ".");
+
+        return new MediaFile(crc, file.getName(), path, title, file.length());
     }
 
     public String calculateCRC(File f) {
@@ -68,8 +74,12 @@ public class FileHelper {
     }
 
     private static String pathToRelative(String base, String path) {
+        path = StringUtils.replaceChars(path, "\\", "/");
+        base = StringUtils.replaceChars(base, "\\", "/");
         return StringUtils.removeStartIgnoreCase(path, base);
     }
+
+
 
     public Checksum getAlgorithm() {
         return algorithm;

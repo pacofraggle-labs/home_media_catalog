@@ -23,7 +23,7 @@ public class App
 
         ext[0] = "avi";
 
-        List<MediaFile> files = finder.findMedia("H:/Bons/Pelicules", ext);
+        List<MediaFile> files = finder.findMedia("H:/Bons/Pelicules","H:/Bons/Pelicules", ext);
 //        for(int i=0; i<files.size(); i++) {
 //            System.out.println(files.get(i));
 //        }

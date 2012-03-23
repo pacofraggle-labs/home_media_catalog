@@ -19,5 +19,5 @@ public interface IMediaFinder {
      * @param path Root folder
      * @param extensions Extensions to be filtered
      */
-    List<MediaFile> findMedia(String path, String[] extensions);
+    List<MediaFile> findMedia(String path, String base, String[] extensions);
 }
