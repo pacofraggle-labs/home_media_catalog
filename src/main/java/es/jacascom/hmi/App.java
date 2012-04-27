@@ -1,12 +1,8 @@
 package es.jacascom.hmi;
 
-import es.jacascom.hmi.csv.CSVManager;
-import es.jacascom.hmi.csv.ICSVManager;
-import es.jacascom.hmi.io.*;
-import es.jacascom.hmi.data.*;
+import es.jacascom.hmi.ui.MainWindow;
 
-import java.io.IOException;
-import java.util.*;
+import javax.swing.*;
 
 
 /**
@@ -15,7 +11,7 @@ import java.util.*;
  */
 public class App
 {
-    public static void main( String[] args )
+/*    public static void main( String[] args )
     {
         IMediaFinder finder = new MediaFinder();
 
@@ -40,12 +36,22 @@ public class App
 
         } catch (IOException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        }
+        }                       */
 
 
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("MainWindow");
+        MainWindow m = new MainWindow();
+        m.addMenuBar(frame);
 
-
+        frame.setContentPane(m.panel);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(400,400)  ;
+        frame.pack();
+        frame.setVisible(true);
     }
+
+
 
 
 
