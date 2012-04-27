@@ -46,7 +46,6 @@ public class App
 
         frame.setContentPane(m.panel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(400,400)  ;
         frame.pack();
         frame.setVisible(true);
     }

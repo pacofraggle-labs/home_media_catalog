@@ -11,6 +11,7 @@ import javax.swing.*;
  */
 public class MainWindow {
     public JPanel panel;
+    private JTable filesTable;
 
     private JMenuItem exitMenuItem;
     private JMenuItem readFolderMenuItem;
@@ -38,6 +39,20 @@ public class MainWindow {
         frame.setJMenuBar(menuBar);
 
     }
+
+    public void clearTableData(){
+
+    }
+
+    public void addRow (int row, String[] data) {
+
+
+        for (int i=0; i<data.length; i++){
+            filesTable.getModel().setValueAt(data[i], row, i);
+
+        }
+    }
+
 
     public JMenuItem getExitMenuItem() {
         return exitMenuItem;

@@ -1,9 +1,14 @@
 package es.jacascom.hmi.ui;
 
+import es.jacascom.hmi.data.MediaFile;
+import es.jacascom.hmi.io.IMediaFinder;
+import es.jacascom.hmi.io.MediaFinder;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -37,11 +42,18 @@ public class MenuBarListener implements ActionListener {
 
             if (result == JFileChooser.APPROVE_OPTION ){
                 System.out.print(chooser.getSelectedFile());
+                IMediaFinder finder = new MediaFinder()  ;
+                List<MediaFile> files = finder.findMedia(chooser.getSelectedFile().getAbsolutePath());
+                for (int i=0; i<files.size(); i++){
+                    MediaFile m = files.get(i);
+                    window.addRow(i, m.toStringArray());
+                    //System.out.println(files.get(i));
+                }
 
             }
-
-
-
         }
     }
+
+
+
 }
