@@ -1,5 +1,6 @@
 package es.jacascom.hmi;
 
+import es.jacascom.hmi.data.MediaFile;
 import es.jacascom.hmi.ui.MainWindow;
 
 import javax.swing.*;
@@ -41,7 +42,7 @@ public class App
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("MainWindow");
-        MainWindow m = new MainWindow();
+        MainWindow m = new MainWindow(MediaFile.obtainFieldNames());
         m.addMenuBar(frame);
 
         frame.setContentPane(m.panel);
@@ -49,15 +50,5 @@ public class App
         frame.pack();
         frame.setVisible(true);
     }
-
-
-
-
-
-
-
-
-
-
 }
 

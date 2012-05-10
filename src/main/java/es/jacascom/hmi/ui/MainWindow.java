@@ -1,6 +1,11 @@
 package es.jacascom.hmi.ui;
 
+import es.jacascom.hmi.data.MediaFile;
+import org.apache.commons.lang.StringUtils;
+
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.util.Arrays;
 
 /**
  * Created by IntelliJ IDEA.
@@ -16,6 +21,10 @@ public class MainWindow {
     private JMenuItem exitMenuItem;
     private JMenuItem readFolderMenuItem;
     private JMenuItem loadCSVMenuItem;
+
+    public MainWindow(String[] tableColumnNames) {
+      clearTableData(tableColumnNames);
+    }
 
     public void addMenuBar(JFrame frame) {
 
@@ -40,17 +49,23 @@ public class MainWindow {
 
     }
 
-    public void clearTableData(){
+    private DefaultTableModel getTableModel() {
+        return (DefaultTableModel) filesTable.getModel();
+    }
 
+    public void clearTableData(String[] tableColumnNames){
+      filesTable.setModel(new DefaultTableModel(tableColumnNames, 0));
+    }
+
+    public void addRow(String[] data) {
+      //System.out.println("addRow: " + Arrays.toString(data));
+      getTableModel().addRow(data);
+      //getTableModel().fireTableDataChanged();
     }
 
     public void addRow (int row, String[] data) {
-
-
-        for (int i=0; i<data.length; i++){
-            filesTable.getModel().setValueAt(data[i], row, i);
-
-        }
+        getTableModel().insertRow(row, data);
+        //getTableModel().fireTableDataChanged();
     }
 
 

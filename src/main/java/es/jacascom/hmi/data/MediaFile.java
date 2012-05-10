@@ -124,6 +124,9 @@ public class MediaFile {
     }
 
 
+    public static String[] obtainFieldNames() {
+        return new String[] {"Code", "FileName", "Path", "Title", "FileSize"};
+    }
 
     @Override
     public int hashCode() {

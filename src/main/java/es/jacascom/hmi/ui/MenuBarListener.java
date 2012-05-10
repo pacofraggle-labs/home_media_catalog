@@ -34,26 +34,29 @@ public class MenuBarListener implements ActionListener {
         if (source == window.getExitMenuItem()) {
             System.exit(0);
         } else if (source == window.getReadFolderMenuItem()){
-            JFileChooser chooser = new JFileChooser()  ;
-
-            chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY );
-
-            int result = chooser.showDialog(frame,"Open");
-
-            if (result == JFileChooser.APPROVE_OPTION ){
-                System.out.print(chooser.getSelectedFile());
-                IMediaFinder finder = new MediaFinder()  ;
-                List<MediaFile> files = finder.findMedia(chooser.getSelectedFile().getAbsolutePath());
-                for (int i=0; i<files.size(); i++){
-                    MediaFile m = files.get(i);
-                    window.addRow(i, m.toStringArray());
-                    //System.out.println(files.get(i));
-                }
-
-            }
+            openFolder();
         }
     }
 
+    private void openFolder() {
+        JFileChooser chooser = new JFileChooser()  ;
 
+        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY );
+
+        int result = chooser.showDialog(frame,"Open");
+
+        if (result == JFileChooser.APPROVE_OPTION ){
+            //System.out.println(chooser.getSelectedFile());
+            IMediaFinder finder = new MediaFinder()  ;
+            List<MediaFile> files = finder.findMedia(chooser.getSelectedFile().getAbsolutePath());
+            // Clear current data
+            window.clearTableData(MediaFile.obtainFieldNames());
+            // Insert new files
+            for (int i=0; i<files.size(); i++){
+                MediaFile m = files.get(i);
+                window.addRow(m.toStringArray());
+            }
+        }
+    }
 
 }
