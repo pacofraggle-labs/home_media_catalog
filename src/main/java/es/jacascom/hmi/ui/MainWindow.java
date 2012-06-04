@@ -1,11 +1,10 @@
 package es.jacascom.hmi.ui;
 
 import es.jacascom.hmi.data.MediaFile;
-import org.apache.commons.lang.StringUtils;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -15,6 +14,8 @@ import java.util.Arrays;
  * To change this template use File | Settings | File Templates.
  */
 public class MainWindow {
+    private List<MediaFile> data;
+
     public JPanel panel;
     private JTable filesTable;
 
@@ -34,8 +35,11 @@ public class MainWindow {
         exitMenuItem = new JMenuItem("Exit");
         readFolderMenuItem = new JMenuItem("Read Folder");
         loadCSVMenuItem = new JMenuItem("Write CSV");
+
         file.add(readFolderMenuItem);
         file.add(loadCSVMenuItem);
+        file.add(new JSeparator());
+        //future file.add(saveNewCsv);
         file.add(new JSeparator());
         file.add(exitMenuItem);
 
@@ -68,7 +72,6 @@ public class MainWindow {
         //getTableModel().fireTableDataChanged();
     }
 
-
     public JMenuItem getExitMenuItem() {
         return exitMenuItem;
     }
@@ -80,4 +83,43 @@ public class MainWindow {
     public JMenuItem getLoadCSVMenuItem() {
         return loadCSVMenuItem;
     }
+
+    public void setData(List<MediaFile> files) {
+        this.data = files;
+
+        clearTableData(MediaFile.obtainFieldNames());
+        // Insert new files
+        for (int i=0; i<files.size(); i++){
+            MediaFile m = files.get(i);
+            addRow(m.toStringArray());
+        }
+        getTableModel().addTableModelListener(new DataListener(this));
+    }
+
+
+    public void updateData(int firstRow, int column) {
+
+        String cellValue = getTableModel().getValueAt(firstRow, column).toString() ;
+
+        /*if (column == 4){
+        String cellValue = getTableModel().getValueAt(firstRow, column).toString() ;
+            Long cellValueSize = Long.parseLong(cellValue);
+        } else {
+                String cellValue = getTableModel().getValueAt(firstRow, column).toString() ;
+        }
+
+        this = cellValue;   */
+
+
+
+        System.out.println(cellValue );
+
+
+
+
+
+
+    }
+
+
 }

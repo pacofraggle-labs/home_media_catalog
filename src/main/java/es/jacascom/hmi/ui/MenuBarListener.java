@@ -35,10 +35,41 @@ public class MenuBarListener implements ActionListener {
             System.exit(0);
         } else if (source == window.getReadFolderMenuItem()){
             openFolder();
-        }
+        }/* else if (source == window.getLoadCSVMenuItem() ) {
+            getRow();
+        }                   */
     }
 
+   /* private void getRow() {
+
+        MediaFile[] m = new MediaFile;
+        JTable table;
+
+        m[i] = table.getModel().getValueAt(row_index, col_index);
+
+        for (int i=0; i<table.getRowCount(); i++){
+
+            m[i] = (MediaFile) table.getModel().getValueAt(i,0);
+
+
+            //m[i].setCode(getData(table, i, 0));
+
+            m[i].setCode() = table.getValueAt(i, 0);
+            m[i].setFilename() = table.getValueAt(i, 1);
+            m[i].setPath()  = table.getValueAt(i, 2);
+            m[i].setTitle() = table.getValueAt(i, 3);
+            m[i].setFilesize()  = table.getValueAt(i, 4);
+
+
+
+
+        }
+
+
+    }         */
+
     private void openFolder() {
+
         JFileChooser chooser = new JFileChooser()  ;
 
         chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY );
@@ -50,13 +81,7 @@ public class MenuBarListener implements ActionListener {
             IMediaFinder finder = new MediaFinder()  ;
             List<MediaFile> files = finder.findMedia(chooser.getSelectedFile().getAbsolutePath());
             // Clear current data
-            window.clearTableData(MediaFile.obtainFieldNames());
-            // Insert new files
-            for (int i=0; i<files.size(); i++){
-                MediaFile m = files.get(i);
-                window.addRow(m.toStringArray());
-            }
+            window.setData(files);
         }
     }
-
 }
