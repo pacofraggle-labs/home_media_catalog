@@ -1,5 +1,7 @@
 package es.jacascom.hmi.ui;
 
+import es.jacascom.hmi.csv.CSVManager;
+import es.jacascom.hmi.csv.ICSVManager;
 import es.jacascom.hmi.data.MediaFile;
 import es.jacascom.hmi.io.IMediaFinder;
 import es.jacascom.hmi.io.MediaFinder;
@@ -35,38 +37,26 @@ public class MenuBarListener implements ActionListener {
             System.exit(0);
         } else if (source == window.getReadFolderMenuItem()){
             openFolder();
-        }/* else if (source == window.getLoadCSVMenuItem() ) {
-            getRow();
-        }                   */
+        } else if (source == window.getLoadCSVMenuItem()  ){
+            createFile();
+        }
     }
 
-   /* private void getRow() {
+    private void createFile() {
 
-        MediaFile[] m = new MediaFile;
-        JTable table;
+        JFileChooser saver = new JFileChooser();
 
-        m[i] = table.getModel().getValueAt(row_index, col_index);
+        int result = saver.showDialog(frame, "Save");
 
-        for (int i=0; i<table.getRowCount(); i++){
-
-            m[i] = (MediaFile) table.getModel().getValueAt(i,0);
-
-
-            //m[i].setCode(getData(table, i, 0));
-
-            m[i].setCode() = table.getValueAt(i, 0);
-            m[i].setFilename() = table.getValueAt(i, 1);
-            m[i].setPath()  = table.getValueAt(i, 2);
-            m[i].setTitle() = table.getValueAt(i, 3);
-            m[i].setFilesize()  = table.getValueAt(i, 4);
-
-
-
-
+        if (result == JFileChooser.APPROVE_OPTION){
+            ICSVManager csv = new CSVManager()  ;
+            csv.saveCSV(data, saver.getSelectedFile().getAbsolutePath());
+            //Stuck here
         }
 
 
-    }         */
+    }
+
 
     private void openFolder() {
 

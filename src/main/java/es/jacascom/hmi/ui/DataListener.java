@@ -18,8 +18,8 @@ public class DataListener implements TableModelListener{
     }
 
     public void tableChanged(TableModelEvent tableModelEvent) {
-        System.out.println(tableModelEvent.getColumn());
-        System.out.println(tableModelEvent.getFirstRow()+" - "+tableModelEvent.getLastRow());
+        //System.out.println(tableModelEvent.getColumn());
+        //System.out.println(tableModelEvent.getFirstRow()+" - "+tableModelEvent.getLastRow());
 
         window.updateData(tableModelEvent.getFirstRow(), tableModelEvent.getColumn());
     }

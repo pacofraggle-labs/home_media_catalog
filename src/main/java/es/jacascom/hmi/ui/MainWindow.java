@@ -100,25 +100,49 @@ public class MainWindow {
     public void updateData(int firstRow, int column) {
 
         String cellValue = getTableModel().getValueAt(firstRow, column).toString() ;
+        MediaFile m = new MediaFile();
 
-        /*if (column == 4){
-        String cellValue = getTableModel().getValueAt(firstRow, column).toString() ;
-            Long cellValueSize = Long.parseLong(cellValue);
-        } else {
-                String cellValue = getTableModel().getValueAt(firstRow, column).toString() ;
+        //System.out.println(cellValue );
+
+
+        // This works!!! On a future I'll transform it
+        if (column == 0){
+            m.setCode(cellValue);
+            m.setFilename(data.get(firstRow ).getFilename());
+            m.setPath(data.get(firstRow ).getPath());
+            m.setTitle(data.get(firstRow ).getTitle());
+            m.setFilesize(data.get(firstRow ).getFilesize());
+        } else if (column == 1){
+            m.setCode(data.get(firstRow ).getCode());
+            m.setFilename(cellValue );
+            m.setPath(data.get(firstRow ).getPath());
+            m.setTitle(data.get(firstRow ).getTitle());
+            m.setFilesize(data.get(firstRow ).getFilesize());
+        } else if (column == 2){
+            m.setCode(data.get(firstRow ).getCode());
+            m.setFilename(data.get(firstRow ).getFilename());
+            m.setPath(cellValue );
+            m.setTitle(data.get(firstRow ).getTitle());
+            m.setFilesize(data.get(firstRow ).getFilesize());
+        } else if (column == 3){
+            m.setCode(data.get(firstRow ).getCode());
+            m.setFilename(data.get(firstRow ).getFilename());
+            m.setPath(data.get(firstRow ).getPath());
+            m.setTitle(cellValue );
+            m.setFilesize(data.get(firstRow ).getFilesize());
+        } else if (column == 4){
+            m.setCode(data.get(firstRow ).getCode());
+            m.setFilename(data.get(firstRow ).getFilename());
+            m.setPath(data.get(firstRow ).getPath());
+            m.setTitle(data.get(firstRow ).getTitle());
+            m.setFilesize(Long.parseLong(cellValue ));
         }
 
-        this = cellValue;   */
+        //System.out.println(data.get(firstRow));
 
+        data.set(firstRow, m);
 
-
-        System.out.println(cellValue );
-
-
-
-
-
-
+        //System.out.println(data.get(firstRow));
     }
 
 
